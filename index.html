@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>키글워크샵숙제1</title>
+<meta name="description" content="코코비 낚시놀이 게임 소개 페이지 (레퍼런스: emblematica.agency)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="css/style.css?v=36">
+</head>
+<body class="is-booting">
+
+<!-- ───── 프리로더: 오브젝트 워터폴 + 아치형 커튼 ───── -->
+<div class="preloader" id="preloader" role="button" tabindex="0" aria-label="클릭하면 시작해요">
+  <div class="preloader-curtain"><img class="pre-title" src="assets/title/cocobi_fishing_title.png" alt="코코비 낚시놀이"><p class="pre-hint">클릭하면 넘어가요!</p></div>
+  <div class="preloader-waterfall" id="waterfall"></div>
+</div>
+
+<!-- ───── 상단 바 ───── -->
+<header class="topbar" id="topbar">
+  <a class="logo" href="#top" aria-label="코코비 낚시놀이 처음으로">
+    <span class="logo-mark"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="14.5"/><path d="M9 17.5c3.5-5 10.5-5 14 0M12 12.5h0M20 12.5h0M10.5 21.5c3 2.6 8 2.6 11 0"/></svg></span>
+    <span class="logo-word">cocobi fishing</span>
+  </a>
+  <button class="pill menu" type="button">MENU <i></i></button>
+  <div class="top-right">
+    <button class="pill sound" id="soundBtn" type="button" aria-label="배경음악 켜기" aria-pressed="false"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="sound-txt">MUSIC</span></button>
+    <span class="pill lang">KOR</span>
+    <a class="pill acid" href="#services">PLAY NOW</a>
+  </div>
+</header>
+
+<!-- 히어로 오브젝트 레이어 (position: fixed, JS 가 위치 계산) -->
+<div class="objects" id="objects"></div>
+
+<!-- 스크롤 게이지: 파도가 차오르고 코코가 배를 타고 이동 (게임 로딩바 리소스) -->
+<div class="scroll-gauge" id="gauge" aria-hidden="true">
+  <div class="g-track">
+    <img class="g-back" src="assets/bar/loading_bar_back.png" alt="">
+    <div class="g-fill"><img src="assets/bar/loading_bar_stick.png" alt=""></div>
+    <img class="g-line" src="assets/bar/loading_bar_line.png" alt="">
+    <div class="g-coco"><div class="g-bob"><img src="assets/bar/loading_bar_coco_0.png" alt=""><img src="assets/bar/loading_bar_coco_1.png" alt=""></div></div>
+  </div>
+</div>
+
+<audio id="bgm" src="assets/audio/bgm.mp3" preload="auto"></audio>
+
+<main id="top">
+
+  <!-- 01 HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="caption c-left">아이를 위한<br>바다 낚시 놀이</div>
+    <div class="caption c-mid">코코비와 함께 9가지 낚시 놀이로 바다를 탐험하고,<br>바다 친구들을 만나고, 바다를 지키는 법을 배워요.</div>
+    <div class="caption c-right">지금 바로<br>바다로 출발</div>
+  </section>
+
+  <!-- 03 SERVICES ─ 고정된 카드 덱, 좌우 번갈아 진입 -->
+  <section class="services dark-zone" id="services">
+    <div class="svc-pin">
+      <span class="kicker svc-kicker">9가지 낚시 놀이</span>
+      <div class="deck" id="deck"></div>
+    </div>
+  </section>
+
+  <!-- 05 FRIENDS ─ 바다 패턴 배경, 이미지 + 카드, 눌러 보는 바다 친구들 -->
+  <section class="about dark-zone" id="about">
+    <div class="about-head">
+      <span class="kicker">코코비와 친구들</span>
+      <h2 class="about-title">바다를 사랑하는 친구들이<br>함께 만든 놀이터</h2>
+    </div>
+    <div class="about-stage">
+      <figure class="about-img"><img src="assets/shots/01_splash_crop.jpg" alt="코코비와 친구들이 함께 낚시하는 모습"></figure>
+      <div class="about-cards">
+        <article class="a-card"><b>01</b><div><h4>함께 준비해요</h4><p>모자와 조끼를 입고 낚시 도구를 챙기며, 놀이마다 차근차근 준비해요.</p></div></article>
+        <article class="a-card"><b>02</b><div><h4>바다를 지켜요</h4><p>해변의 쓰레기를 치우고, 아픈 바다 친구들을 깨끗하게 돌봐 줘요.</p></div></article>
+        <article class="a-card"><b>03</b><div><h4>보상이 쌓여요</h4><p>놀이를 마칠 때마다 바다 마을이 환해지고 스티커와 보상이 쌓여요.</p></div></article>
+        <a class="a-link" href="#services">9가지 놀이 다시 보기 →</a>
+      </div>
+    </div>
+    <p class="about-tip">바다 친구들을 톡! 눌러 보세요</p>
+    <div class="about-objects" id="aboutObjects">
+      <img src="assets/ani/starfish_p.png" alt="불가사리" data-d="0.9">
+      <img src="assets/ani/beluga.png" alt="벨루가" data-d="0.5">
+      <img src="assets/ani/seahorse_g.png" alt="해마" data-d="1.1">
+      <img src="assets/ani/octopus_pink.png" alt="문어" data-d="0.7">
+      <img src="assets/ani/fish_yellow.png" alt="열대어" data-d="1.0">
+    </div>
+  </section>
+
+  <!-- 06 LOOP HERO ─ 히어로 복제본. 여기에 닿으면 맨 위로 이음새 없이 돌아감 -->
+  <section class="loop-hero" id="loopHero">
+    <div class="hero-bg"></div>
+    <div class="loop-stage" id="loopStage"></div>
+    <div class="caption c-left">아이를 위한<br>바다 낚시 놀이</div>
+    <div class="caption c-mid">코코비와 함께 9가지 낚시 놀이로 바다를 탐험하고,<br>바다 친구들을 만나고, 바다를 지키는 법을 배워요.</div>
+    <div class="caption c-right">지금 바로<br>바다로 출발</div>
+  </section>
+
+</main>
+
+<script src="js/main.js?v=40"></script>
+</body>
+</html>
