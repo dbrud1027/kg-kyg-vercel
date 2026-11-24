@@ -327,7 +327,6 @@ body.is-hovering .hero .caption { color: var(--ink); text-shadow: none; transiti
 .preloader:not(.is-leaving) { pointer-events: auto; }
 .preloader:focus-visible { outline: none; }
 .pre-title { transition: transform .25s cubic-bezier(.2, 1.4, .4, 1); }
-.preloader.is-ready:not(.is-go):hover .pre-title { transform: scale(1.04); }
 .preloader.is-go .pre-title { transform: scale(.97); }
 .pre-hint {
   position: absolute; left: 50%; top: calc(32% + min(32vw, 56vh) * .27 + 26px); translate: -50% 0; z-index: 2; white-space: nowrap;
@@ -348,3 +347,15 @@ body.is-hovering .hero .caption { color: var(--ink); text-shadow: none; transiti
 .preloader-waterfall { inset: 64vh 0 0 0; }          /* 물고기는 더 아래로 */
 @media (max-width: 900px) { .preloader { --tw: 64vw; } .pre-title { width: var(--tw); top: calc(50% - (var(--gap) + var(--hint-h)) / 2); } .pre-hint { top: calc(50% - (var(--gap) + var(--hint-h)) / 2 + var(--th) / 2 + var(--gap)); } }
 
+
+/* ───────── 타이틀 화면: 10초 카운트다운 ───────── */
+.pre-count {
+  display: inline-block; min-width: 1.15em; margin-right: .12em; text-align: center;
+  font-family: "Inter Tight", "Pretendard Variable", Pretendard, sans-serif; font-weight: 800; font-size: 1.5em;
+  line-height: 1; vertical-align: -.12em; color: #ffe14d;
+  text-shadow: 0 3px 0 #0a7fc2, 0 6px 16px rgb(0 60 130 / .35);
+  font-variant-numeric: tabular-nums;
+}
+.pre-count.tick { animation: countPop .45s cubic-bezier(.2, 1.6, .4, 1); }
+@keyframes countPop { 0% { scale: 1.6; } 100% { scale: 1; } }
+@media (prefers-reduced-motion: reduce) { .pre-count.tick { animation: none; } }

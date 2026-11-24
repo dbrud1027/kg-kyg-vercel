@@ -9,13 +9,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="stylesheet" href="css/style.css?v=36">
+<link rel="stylesheet" href="css/style.css?v=37">
 </head>
 <body class="is-booting">
 
 <!-- ───── 프리로더: 오브젝트 워터폴 + 아치형 커튼 ───── -->
-<div class="preloader" id="preloader" role="button" tabindex="0" aria-label="클릭하면 시작해요">
-  <div class="preloader-curtain"><img class="pre-title" src="assets/title/cocobi_fishing_title.png" alt="코코비 낚시놀이"><p class="pre-hint">클릭하면 넘어가요!</p></div>
+<div class="preloader" id="preloader">
+  <div class="preloader-curtain"><img class="pre-title" src="assets/title/cocobi_fishing_title.png" alt="코코비 낚시놀이"><p class="pre-hint" role="timer" aria-live="polite"><b class="pre-count" id="preCount">10</b>초 뒤에 바다로 출발!</p></div>
   <div class="preloader-waterfall" id="waterfall"></div>
 </div>
 
@@ -102,6 +102,6 @@
 
 </main>
 
-<script src="js/main.js?v=40"></script>
+<script src="js/main.js?v=41"></script>
 </body>
 </html>
