@@ -84,38 +84,24 @@ function preloader() {
       setTimeout(() => { pre.classList.add("is-done"); introDoneAt = performance.now(); moveSinceIntro = 0; }, 680);
     }, reduce ? 0 : total + 60);
   };
-  // 첫 화면 = 타이틀 화면. 10초 카운트다운이 끝나면 물고기 워터폴 → 메인 화면
-  // (그 사이 클릭/터치가 있었다면 브라우저가 소리 재생을 허용해 BGM 이 이어서 나오고, 없으면 첫 클릭 때 시작)
-  const COUNT = 10, countEl = $('#preCount');
-  let ready = false, requested = false, counting = false;
-  const go = () => {
-    if (requested) return; requested = true;
-    pre.classList.add('is-go');
-    if (!userMuted && bgm.paused) musicOn();
-    if (ready) start();
-  };
-  const countdown = () => {
-    if (counting) return; counting = true;
-    const t0 = performance.now();
-    let shown = COUNT;
-    const step = () => {
-      const left = Math.max(0, COUNT - Math.floor((performance.now() - t0) / 1000));
-      if (left !== shown) {
-        shown = left; countEl.textContent = left;
-        countEl.classList.remove('tick'); void countEl.offsetWidth; countEl.classList.add('tick');   // 숫자 바뀔 때마다 톡!
-      }
-      if (left === 0) setTimeout(go, 350); else setTimeout(step, 100);
-    };
-    step();
-  };
+  // 첫 화면 = 타이틀 화면. 클릭(터치)하면 BGM 시작 + 물고기 워터폴 → 메인 화면
+  // (클릭이 "사용자 동작"이라 브라우저가 소리 재생을 허용함)
+  let ready = false, requested = false;
   const markReady = () => {
     if (ready) return; ready = true;
     pre.classList.add('is-ready');
-    countdown();                                    // 화면이 준비된 순간부터 10초
     if (requested) start();
   };
   Promise.all(imgs.map(i => i.decode().catch(() => {}))).then(markReady);
-  setTimeout(markReady, 4000);                      // 이미지가 늦어도 4초 뒤엔 진행
+  setTimeout(markReady, 4000);                      // 이미지가 늦어도 4초 뒤엔 진행 가능
+  const go = () => {
+    if (requested) return; requested = true;
+    pre.classList.add('is-go');
+    if (!userMuted) musicOn();
+    if (ready) start();
+  };
+  pre.addEventListener('click', go);
+  addEventListener('keydown', e => { if (!requested && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); go(); } });
 }
 
 /* ───────── 히어로 오브젝트 ───────── */
